@@ -1,0 +1,113 @@
+// Import icons for material design
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+
+@import '~@angular/material/theming';
+
+// Include material core styles.
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat-core();
+
+// Define the light theme.
+$primary: mat-palette($mat-blue);
+$accent: mat-palette($mat-pink, A200, A100, A400);
+
+$theme: mat-light-theme($primary, $accent);
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include angular-material-theme($theme);
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+nav {
+  .brand-logo {
+    padding-left: 40px;
+  }
+}
+
+.card {
+  .card-content {
+    position: relative;
+
+    .flex_container {
+      display: flex;
+      width: 100%;
+    }
+
+    .flex_item_left {
+      width: 130px;
+      height: 120px;
+    }
+
+    .flex_item_right {
+      flex: 1;
+      padding: 0 10px 0 5px;
+    }
+
+    // .card-title-wrapper {
+    //   display: inline-block;
+    //   vertical-align: top;
+    //   padding-left: 10px;
+    // }
+
+    .card-title {
+      font-size: 20px;
+      line-height: 30px;
+    }
+
+    .grade-icon-wrapper {
+      position: absolute;
+      right: 10px;
+      top: 28px;
+    }
+  }
+
+  .card-action {
+    a {
+      &:first-child {
+        text-transform: none !important;
+      }
+
+      &:last-child {
+        margin-right: 0 !important;
+        color: #cfdae0 !important;
+      }
+    }
+  }
+}
+
+.clear-search {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  background: #fff;
+
+  .material-icons {
+    font-size: 30px;
+  }
+}
+
+.input-radio {
+  text-align: center;
+
+  label {
+    &:first-child {
+      position: relative;
+      bottom: 2px;
+      padding-right: 6px;
+      font-size: 15px;
+    }
+
+    &:last-child {
+      margin-left: 28px;
+    }
+  }
+}

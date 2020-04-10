@@ -1,0 +1,76 @@
+<header>
+  <nav>
+    <div class="nav-wrapper">
+      <a href="#" class="brand-logo">Games Arena</a>
+    </div>
+  </nav>
+</header>
+<section>
+  
+  <div class="container">
+    <!-- Search and Filter Start-->
+    <div class="row">
+      <form #searchAndFilterForm="ngForm" class="col s12">
+        <div class="input-field col s12">
+          <input id="search" type="text" [disabled]="filteredGamesViewData.length == 0" [(ngModel)]="userSearch" name="search" class="validate"
+            (ngModelChange)="searchGame()" placeholder="Search (by Name)">
+          <span class="clear-search">
+            <a href="#!" (click)="clearSearch()"><i class="material-icons">close</i></a>
+          </span>
+        </div>
+        <div class="input-radio col s12">
+          <label>
+            <span>Sort by:</span>
+          </label>
+          <label>
+            <input class="with-gap" [attr.disabled]="(filteredGamesViewData.length == 0 ? '' : null)" name="group1" [value]="'Ascending'" type="radio" [(ngModel)]="sortBy" (ngModelChange)="sortGamesData()">
+            <span>Ascending</span>
+          </label>
+          <label>
+            <input class="with-gap" [attr.disabled]="(filteredGamesViewData.length == 0 ? '' : null)" name="group1" [value]="'Descending'" type="radio" [(ngModel)]="sortBy" (ngModelChange)="sortGamesData()">
+            <span>Descending</span>
+          </label>
+        </div>
+      </form>
+    </div>
+    <!-- Search and Filter End -->
+
+    <div class="row">
+
+      <ng-container *ngFor="let gameMetaData of filteredGamesViewData;">
+        <div class="col s12 m6 l6" *ngIf="gameMetaData?.show">
+          <div class="card blue-grey darken-1">
+            <div class="card-content white-text">
+              
+              <div class="flex_container">
+                <div class="flex_item_left">
+                  <img src="../../assets/img/app-img.png" height="120" />
+                </div>
+                <div class="flex_item_right">
+                  <span class="card-title">{{gameMetaData.title}}</span>
+                  <p>{{gameMetaData.platform}}</p>
+                </div>
+              </div>
+
+              <span class="grade-icon-wrapper" *ngIf="gameMetaData.editors_choice == 'Y'">
+                <i class="material-icons" title="Editors choice">grade</i>
+              </span>
+            </div>
+            <div class="card-action">
+              <a href="#">Genre: {{gameMetaData.genre}}</a>
+              <a href="#" class="right">{{gameMetaData.score}}</a>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+      
+    </div>
+  </div>
+</section>
+<footer class="center">
+  <mat-paginator  [length]="displayLength"
+                  [pageSize]="pageSize"
+                  [pageSizeOptions]="pageSizeOptions"
+                  (page)="pageEvent = getSelectedPageData($event)">
+  </mat-paginator>
+</footer>
